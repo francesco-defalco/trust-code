@@ -1,0 +1,268 @@
+{
+  "_format": "hh-sol-cache-2",
+  "files": {
+    "/home/francesco/progetti/git/trust-code/contracts/AuditRegistry.sol": {
+      "lastModificationDate": 1709501621695,
+      "contentHash": "392e01c9b5b33c5121508305d0bd2fd9",
+      "sourceName": "contracts/AuditRegistry.sol",
+      "solcConfig": {
+        "version": "0.8.24",
+        "settings": {
+          "evmVersion": "paris",
+          "optimizer": {
+            "enabled": false,
+            "runs": 200
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [
+        "@openzeppelin/contracts/access/AccessControl.sol",
+        "@openzeppelin/contracts/access/Ownable.sol"
+      ],
+      "versionPragmas": [
+        "^0.8.0"
+      ],
+      "artifacts": [
+        "AuditRegistry"
+      ]
+    },
+    "/home/francesco/progetti/git/trust-code/node_modules/@openzeppelin/contracts/access/AccessControl.sol": {
+      "lastModificationDate": 1709451277193,
+      "contentHash": "4c80b7fdf559a9a348e832a57d072a0b",
+      "sourceName": "@openzeppelin/contracts/access/AccessControl.sol",
+      "solcConfig": {
+        "version": "0.8.24",
+        "settings": {
+          "evmVersion": "paris",
+          "optimizer": {
+            "enabled": false,
+            "runs": 200
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [
+        "./IAccessControl.sol",
+        "../utils/Context.sol",
+        "../utils/introspection/ERC165.sol"
+      ],
+      "versionPragmas": [
+        "^0.8.20"
+      ],
+      "artifacts": [
+        "AccessControl"
+      ]
+    },
+    "/home/francesco/progetti/git/trust-code/node_modules/@openzeppelin/contracts/access/Ownable.sol": {
+      "lastModificationDate": 1709451277229,
+      "contentHash": "d3c790edc9ccf808a17c5a6cd13614fd",
+      "sourceName": "@openzeppelin/contracts/access/Ownable.sol",
+      "solcConfig": {
+        "version": "0.8.24",
+        "settings": {
+          "evmVersion": "paris",
+          "optimizer": {
+            "enabled": false,
+            "runs": 200
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [
+        "../utils/Context.sol"
+      ],
+      "versionPragmas": [
+        "^0.8.20"
+      ],
+      "artifacts": [
+        "Ownable"
+      ]
+    },
+    "/home/francesco/progetti/git/trust-code/node_modules/@openzeppelin/contracts/utils/Context.sol": {
+      "lastModificationDate": 1709451277197,
+      "contentHash": "67bfbc07588eb8683b3fd8f6f909563e",
+      "sourceName": "@openzeppelin/contracts/utils/Context.sol",
+      "solcConfig": {
+        "version": "0.8.24",
+        "settings": {
+          "evmVersion": "paris",
+          "optimizer": {
+            "enabled": false,
+            "runs": 200
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [],
+      "versionPragmas": [
+        "^0.8.20"
+      ],
+      "artifacts": [
+        "Context"
+      ]
+    },
+    "/home/francesco/progetti/git/trust-code/node_modules/@openzeppelin/contracts/utils/introspection/ERC165.sol": {
+      "lastModificationDate": 1709451277201,
+      "contentHash": "6a55c353946e471d9792965d06208295",
+      "sourceName": "@openzeppelin/contracts/utils/introspection/ERC165.sol",
+      "solcConfig": {
+        "version": "0.8.24",
+        "settings": {
+          "evmVersion": "paris",
+          "optimizer": {
+            "enabled": false,
+            "runs": 200
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [
+        "./IERC165.sol"
+      ],
+      "versionPragmas": [
+        "^0.8.20"
+      ],
+      "artifacts": [
+        "ERC165"
+      ]
+    },
+    "/home/francesco/progetti/git/trust-code/node_modules/@openzeppelin/contracts/access/IAccessControl.sol": {
+      "lastModificationDate": 1709451277213,
+      "contentHash": "e3a14b0714caaaa82d58fa0bc3756079",
+      "sourceName": "@openzeppelin/contracts/access/IAccessControl.sol",
+      "solcConfig": {
+        "version": "0.8.24",
+        "settings": {
+          "evmVersion": "paris",
+          "optimizer": {
+            "enabled": false,
+            "runs": 200
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [],
+      "versionPragmas": [
+        "^0.8.20"
+      ],
+      "artifacts": [
+        "IAccessControl"
+      ]
+    },
+    "/home/francesco/progetti/git/trust-code/node_modules/@openzeppelin/contracts/utils/introspection/IERC165.sol": {
+      "lastModificationDate": 1709451277217,
+      "contentHash": "de0163561b417b800d01749cbbe2147e",
+      "sourceName": "@openzeppelin/contracts/utils/introspection/IERC165.sol",
+      "solcConfig": {
+        "version": "0.8.24",
+        "settings": {
+          "evmVersion": "paris",
+          "optimizer": {
+            "enabled": false,
+            "runs": 200
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [],
+      "versionPragmas": [
+        "^0.8.20"
+      ],
+      "artifacts": [
+        "IERC165"
+      ]
+    }
+  }
+}

@@ -26,7 +26,7 @@ contract AuditRegistry is AccessControl, Ownable {
     mapping(uint256 => Audit) public audits;
     uint256 public nextId = 1;
 
-    constructor() AccessControl() Ownable(msg.sender) {
+    constructor() Ownable(msg.sender) {
         grantRole(ADMIN_ROLE, msg.sender);
     }
 
