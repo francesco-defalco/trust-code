@@ -10,9 +10,8 @@ async function main() {
 	// Hardhat always runs the compile task when running scripts through it.
 	const AuditRegistry = await hre.ethers.getContractFactory("AuditRegistry");
 	const auditRegistry = await AuditRegistry.deploy();
-
 	await auditRegistry.deployed();
-
+	return { auditRegistry };
 	console.log("AuditRegistry deployed to:", auditRegistry.address);
 }
 
