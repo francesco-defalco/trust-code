@@ -27,7 +27,6 @@ contract AuditRegistry is AccessControl, Ownable {
     uint256 public nextId = 1;
 
     constructor() Ownable(msg.sender) {
-        grantRole(ADMIN_ROLE, msg.sender);
     }
 
     function addAuditor(address auditor) public onlyOwner {
