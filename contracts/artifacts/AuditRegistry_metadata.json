@@ -240,11 +240,6 @@
 						"type": "uint256"
 					},
 					{
-						"internalType": "uint256",
-						"name": "vulnerabilitiesFound",
-						"type": "uint256"
-					},
-					{
 						"internalType": "string",
 						"name": "githubCommit",
 						"type": "string"
@@ -279,11 +274,100 @@
 						"internalType": "uint256",
 						"name": "id",
 						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "endDate",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "highSeverity",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "mediumSeverity",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "lowSeverity",
+						"type": "uint256"
 					}
 				],
 				"name": "certifyAudit",
 				"outputs": [],
 				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "id",
+						"type": "uint256"
+					}
+				],
+				"name": "getAudit",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					},
+					{
+						"internalType": "address",
+						"name": "",
+						"type": "address"
+					},
+					{
+						"internalType": "string",
+						"name": "",
+						"type": "string"
+					},
+					{
+						"internalType": "string",
+						"name": "",
+						"type": "string"
+					},
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					},
+					{
+						"internalType": "string",
+						"name": "",
+						"type": "string"
+					},
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					},
+					{
+						"internalType": "bool",
+						"name": "",
+						"type": "bool"
+					}
+				],
+				"stateMutability": "view",
 				"type": "function"
 			},
 			{
@@ -393,11 +477,6 @@
 					{
 						"internalType": "uint256",
 						"name": "endDate",
-						"type": "uint256"
-					},
-					{
-						"internalType": "uint256",
-						"name": "vulnerabilitiesFound",
 						"type": "uint256"
 					},
 					{
@@ -639,11 +718,11 @@
 			]
 		},
 		"contracts/AuditRegistry.sol": {
-			"keccak256": "0xc84b08b6135c73b3a7fea649bfdb97ef4ce5f247957f390aeb030d4d2dc181a1",
+			"keccak256": "0x7f9f2677aa4c047a85ca73ae4ae8b29d39a5d07371fce053af4ed9b513de3e2f",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://111dd6098c29b1db873cef4153423b73dfbaadbd5f0694dd4825b4852758f2d6",
-				"dweb:/ipfs/QmWjspbkdwQBvMZub1nQENTcVQb8ZHzubBjyPEpHrbyTGo"
+				"bzz-raw://bccb34b6808bcfd173b9a0e65b663c692e491d4b09f90e6b07306efdde869893",
+				"dweb:/ipfs/QmWJQmxSeqmkvnwS1sxJxYpyjsABWUjS3r5KNJtMGnzBBH"
 			]
 		}
 	},

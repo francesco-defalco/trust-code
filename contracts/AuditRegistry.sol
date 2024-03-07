@@ -15,7 +15,6 @@ contract AuditRegistry is AccessControl, Ownable {
         string project;
         uint256 startDate;
         uint256 endDate;
-        uint256 vulnerabilitiesFound;
         string githubCommit;
         uint256 highSeverity;
         uint256 mediumSeverity;
@@ -24,7 +23,7 @@ contract AuditRegistry is AccessControl, Ownable {
     }
 
     mapping(uint256 => Audit) public audits;
-    uint256 public nextId = 1;
+    uint256 public nextId = 0;
 
     constructor() Ownable(msg.sender) {
     }
@@ -38,7 +37,6 @@ contract AuditRegistry is AccessControl, Ownable {
         string memory project,
         uint256 startDate,
         uint256 endDate,
-        uint256 vulnerabilitiesFound,
         string memory githubCommit,
         uint256 highSeverity,
         uint256 mediumSeverity,
@@ -51,7 +49,6 @@ contract AuditRegistry is AccessControl, Ownable {
             project: project,
             startDate: startDate,
             endDate: endDate,
-            vulnerabilitiesFound: vulnerabilitiesFound,
             githubCommit: githubCommit,
             highSeverity: highSeverity,
             mediumSeverity: mediumSeverity,
@@ -62,9 +59,48 @@ contract AuditRegistry is AccessControl, Ownable {
         nextId++;
     }
 
-    function certifyAudit(uint256 id) public {
+    function certifyAudit(
+        uint256 id, 
+        uint256 endDate, 
+        uint256 highSeverity, 
+        uint256 mediumSeverity, 
+        uint256 lowSeverity
+    ) public {
         require(hasRole(AUDITOR_ROLE, msg.sender), "Only the auditor can certify the audit");
         Audit storage audit = audits[id];
+        audit.endDate = endDate;
+        audit.highSeverity = highSeverity;
+        audit.mediumSeverity = mediumSeverity;
+        audit.lowSeverity = lowSeverity;
         audit.certified = true;
     }
+
+    function getAudit(uint256 id) public view returns (
+    uint256, 
+    address, 
+    string memory, 
+    string memory, 
+    uint256, 
+    uint256, 
+    string memory, 
+    uint256, 
+    uint256, 
+    uint256, 
+    bool
+) {
+    Audit storage audit = audits[id];
+    return (
+        audit.id, 
+        audit.auditor, 
+        audit.company, 
+        audit.project, 
+        audit.startDate, 
+        audit.endDate, 
+        audit.githubCommit, 
+        audit.highSeverity, 
+        audit.mediumSeverity, 
+        audit.lowSeverity, 
+        audit.certified
+    );
+}
 }

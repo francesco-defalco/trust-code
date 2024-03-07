@@ -12,6 +12,20 @@ describe("AuditRegistry", function () {
 		const [owner, otherAccount] = await ethers.getSigners();
 
 		const AuditRegistry = await ethers.getContractFactory("AuditRegistry");
-		return await AuditRegistry.deploy();
+
+		const auditRegistry = await AuditRegistry.deploy();
+
+		return { auditRegistry, owner, otherAccount };
 	}
+
+	describe("Deployment", function () {
+		it("should deploy AuditRegistry contract", async function () {
+			const { auditRegistry } = await loadFixture(deployAuditRegistry);
+
+			const contractAddress = await auditRegistry.getAddress();
+			expect(contractAddress).to.be.properAddress;
+
+			console.log("AuditRegistry deployed to:", contractAddress);
+		});
+	});
 });
