@@ -55,8 +55,7 @@ contract AuditRegistry is AccessControl {
         uint256 highSeverity,
         uint256 mediumSeverity,
         uint256 lowSeverity
-    ) public {
-        require(hasRole(AUDITOR_ROLE, msg.sender), "Caller is not an auditor");
+    ) public onlyRole(AUDITOR_ROLE) {
         audits[nextId] = Audit({
             id: nextId,
             auditor: msg.sender,

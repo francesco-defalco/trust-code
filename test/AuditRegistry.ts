@@ -82,7 +82,7 @@ describe("Test Roles", function () {
 						2,
 						3
 					)
-			).to.be.rejectedWith("Caller is not an auditor");
+			).to.be.rejected;
 		});
 	});
 });
