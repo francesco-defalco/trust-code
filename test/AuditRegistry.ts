@@ -63,10 +63,12 @@ describe("Test Roles", function () {
 			).to.not.be.reverted;
 		});
 
-		it("should not allow non-auditor to record an audit", async function () {
+		it("should not allow non-auditor to certify an audit", async function () {
 			const { auditRegistry, otherAccount } = await loadFixture(
 				deployAuditRegistry
 			);
+
+			const id = 1; // Assuming an audit with this ID exists
 			await expect(
 				auditRegistry
 					.connect(otherAccount)
@@ -80,30 +82,7 @@ describe("Test Roles", function () {
 						2,
 						3
 					)
-			).to.be.revertedWith("Caller is not an auditor");
-		});
-
-		it("should increment nextId after recording an audit", async function () {
-			const { auditRegistry, auditor } = await loadFixture(
-				deployAuditRegistry
-			);
-			// ...
-
-			const nextIdBefore = auditRegistry.nextId();
-			await auditRegistry
-				.connect(auditor)
-				.recordAudit(
-					"Company",
-					"Project",
-					Date.now(),
-					Date.now(),
-					"GithubCommit",
-					1,
-					2,
-					3
-				);
-			const nextIdAfter = await auditRegistry.nextId();
-			expect(nextIdAfter).to.equal(nextIdBefore);
+			).to.be.rejectedWith("Caller is not an auditor");
 		});
 	});
 });

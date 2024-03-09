@@ -55,7 +55,8 @@ contract AuditRegistry is AccessControl {
         uint256 highSeverity,
         uint256 mediumSeverity,
         uint256 lowSeverity
-    ) public onlyRole(AUDITOR_ROLE) {
+    ) public {
+        require(hasRole(AUDITOR_ROLE, msg.sender), "Caller is not an auditor");
         audits[nextId] = Audit({
             id: nextId,
             auditor: msg.sender,
@@ -79,8 +80,7 @@ contract AuditRegistry is AccessControl {
         uint256 highSeverity, 
         uint256 mediumSeverity, 
         uint256 lowSeverity
-    ) public {
-        require(hasRole(AUDITOR_ROLE, msg.sender), "Only the auditor can certify the audit");
+    ) public onlyRole(AUDITOR_ROLE) {
         Audit storage audit = audits[id];
         audit.endDate = endDate;
         audit.highSeverity = highSeverity;
