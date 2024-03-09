@@ -1,12 +1,11 @@
 // SPDX-License-Identifier: MIT
-pragma solidity ^0.8.0;
+pragma solidity ^0.8.20;
 
 import "@openzeppelin/contracts/access/AccessControl.sol";
-import "@openzeppelin/contracts/access/Ownable.sol";
 
-contract AuditRegistry is AccessControl, Ownable {
+contract AuditRegistry is AccessControl {
+    address private owner;
     bytes32 public constant AUDITOR_ROLE = keccak256("AUDITOR_ROLE");
-    bytes32 public constant ADMIN_ROLE = keccak256("ADMIN_ROLE");
 
     struct Audit {
         uint256 id;
@@ -23,13 +22,28 @@ contract AuditRegistry is AccessControl, Ownable {
     }
 
     mapping(uint256 => Audit) public audits;
-    uint256 public nextId = 0;
+    uint256 public nextId = 1;
 
-    constructor() Ownable(msg.sender) {
+    constructor() {
+        _grantRole(DEFAULT_ADMIN_ROLE, msg.sender);
+        owner = msg.sender;
     }
 
-    function addAuditor(address auditor) public onlyOwner {
+    modifier onlyOwner() {
+        require(msg.sender == owner, "Unauthorized");
+        _;
+    }
+
+    function addAuditor(address auditor) public onlyRole(DEFAULT_ADMIN_ROLE) {
+        require(hasRole(DEFAULT_ADMIN_ROLE, msg.sender), "Only the owner can add an auditor");
+        require(!hasRole(AUDITOR_ROLE, auditor), "The address is already an auditor");
         grantRole(AUDITOR_ROLE, auditor);
+    }
+
+    function removeAuditor(address auditor) public onlyRole(DEFAULT_ADMIN_ROLE) {
+        require(hasRole(DEFAULT_ADMIN_ROLE, msg.sender), "Only the owner can remove an auditor");
+        require(hasRole(AUDITOR_ROLE, auditor), "The address is not an auditor");
+        revokeRole(AUDITOR_ROLE, auditor);
     }
 
     function recordAudit(

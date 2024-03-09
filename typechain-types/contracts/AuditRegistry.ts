@@ -26,7 +26,6 @@ import type {
 export interface AuditRegistryInterface extends Interface {
   getFunction(
     nameOrSignature:
-      | "ADMIN_ROLE"
       | "AUDITOR_ROLE"
       | "DEFAULT_ADMIN_ROLE"
       | "addAuditor"
@@ -37,27 +36,17 @@ export interface AuditRegistryInterface extends Interface {
       | "grantRole"
       | "hasRole"
       | "nextId"
-      | "owner"
       | "recordAudit"
-      | "renounceOwnership"
+      | "removeAuditor"
       | "renounceRole"
       | "revokeRole"
       | "supportsInterface"
-      | "transferOwnership"
   ): FunctionFragment;
 
   getEvent(
-    nameOrSignatureOrTopic:
-      | "OwnershipTransferred"
-      | "RoleAdminChanged"
-      | "RoleGranted"
-      | "RoleRevoked"
+    nameOrSignatureOrTopic: "RoleAdminChanged" | "RoleGranted" | "RoleRevoked"
   ): EventFragment;
 
-  encodeFunctionData(
-    functionFragment: "ADMIN_ROLE",
-    values?: undefined
-  ): string;
   encodeFunctionData(
     functionFragment: "AUDITOR_ROLE",
     values?: undefined
@@ -101,7 +90,6 @@ export interface AuditRegistryInterface extends Interface {
     values: [BytesLike, AddressLike]
   ): string;
   encodeFunctionData(functionFragment: "nextId", values?: undefined): string;
-  encodeFunctionData(functionFragment: "owner", values?: undefined): string;
   encodeFunctionData(
     functionFragment: "recordAudit",
     values: [
@@ -116,8 +104,8 @@ export interface AuditRegistryInterface extends Interface {
     ]
   ): string;
   encodeFunctionData(
-    functionFragment: "renounceOwnership",
-    values?: undefined
+    functionFragment: "removeAuditor",
+    values: [AddressLike]
   ): string;
   encodeFunctionData(
     functionFragment: "renounceRole",
@@ -131,12 +119,7 @@ export interface AuditRegistryInterface extends Interface {
     functionFragment: "supportsInterface",
     values: [BytesLike]
   ): string;
-  encodeFunctionData(
-    functionFragment: "transferOwnership",
-    values: [AddressLike]
-  ): string;
 
-  decodeFunctionResult(functionFragment: "ADMIN_ROLE", data: BytesLike): Result;
   decodeFunctionResult(
     functionFragment: "AUDITOR_ROLE",
     data: BytesLike
@@ -159,13 +142,12 @@ export interface AuditRegistryInterface extends Interface {
   decodeFunctionResult(functionFragment: "grantRole", data: BytesLike): Result;
   decodeFunctionResult(functionFragment: "hasRole", data: BytesLike): Result;
   decodeFunctionResult(functionFragment: "nextId", data: BytesLike): Result;
-  decodeFunctionResult(functionFragment: "owner", data: BytesLike): Result;
   decodeFunctionResult(
     functionFragment: "recordAudit",
     data: BytesLike
   ): Result;
   decodeFunctionResult(
-    functionFragment: "renounceOwnership",
+    functionFragment: "removeAuditor",
     data: BytesLike
   ): Result;
   decodeFunctionResult(
@@ -177,23 +159,6 @@ export interface AuditRegistryInterface extends Interface {
     functionFragment: "supportsInterface",
     data: BytesLike
   ): Result;
-  decodeFunctionResult(
-    functionFragment: "transferOwnership",
-    data: BytesLike
-  ): Result;
-}
-
-export namespace OwnershipTransferredEvent {
-  export type InputTuple = [previousOwner: AddressLike, newOwner: AddressLike];
-  export type OutputTuple = [previousOwner: string, newOwner: string];
-  export interface OutputObject {
-    previousOwner: string;
-    newOwner: string;
-  }
-  export type Event = TypedContractEvent<InputTuple, OutputTuple, OutputObject>;
-  export type Filter = TypedDeferredTopicFilter<Event>;
-  export type Log = TypedEventLog<Event>;
-  export type LogDescription = TypedLogDescription<Event>;
 }
 
 export namespace RoleAdminChangedEvent {
@@ -297,8 +262,6 @@ export interface AuditRegistry extends BaseContract {
     event?: TCEvent
   ): Promise<this>;
 
-  ADMIN_ROLE: TypedContractMethod<[], [string], "view">;
-
   AUDITOR_ROLE: TypedContractMethod<[], [string], "view">;
 
   DEFAULT_ADMIN_ROLE: TypedContractMethod<[], [string], "view">;
@@ -385,8 +348,6 @@ export interface AuditRegistry extends BaseContract {
 
   nextId: TypedContractMethod<[], [bigint], "view">;
 
-  owner: TypedContractMethod<[], [string], "view">;
-
   recordAudit: TypedContractMethod<
     [
       company: string,
@@ -402,7 +363,11 @@ export interface AuditRegistry extends BaseContract {
     "nonpayable"
   >;
 
-  renounceOwnership: TypedContractMethod<[], [void], "nonpayable">;
+  removeAuditor: TypedContractMethod<
+    [auditor: AddressLike],
+    [void],
+    "nonpayable"
+  >;
 
   renounceRole: TypedContractMethod<
     [role: BytesLike, callerConfirmation: AddressLike],
@@ -422,19 +387,10 @@ export interface AuditRegistry extends BaseContract {
     "view"
   >;
 
-  transferOwnership: TypedContractMethod<
-    [newOwner: AddressLike],
-    [void],
-    "nonpayable"
-  >;
-
   getFunction<T extends ContractMethod = ContractMethod>(
     key: string | FunctionFragment
   ): T;
 
-  getFunction(
-    nameOrSignature: "ADMIN_ROLE"
-  ): TypedContractMethod<[], [string], "view">;
   getFunction(
     nameOrSignature: "AUDITOR_ROLE"
   ): TypedContractMethod<[], [string], "view">;
@@ -532,9 +488,6 @@ export interface AuditRegistry extends BaseContract {
     nameOrSignature: "nextId"
   ): TypedContractMethod<[], [bigint], "view">;
   getFunction(
-    nameOrSignature: "owner"
-  ): TypedContractMethod<[], [string], "view">;
-  getFunction(
     nameOrSignature: "recordAudit"
   ): TypedContractMethod<
     [
@@ -551,8 +504,8 @@ export interface AuditRegistry extends BaseContract {
     "nonpayable"
   >;
   getFunction(
-    nameOrSignature: "renounceOwnership"
-  ): TypedContractMethod<[], [void], "nonpayable">;
+    nameOrSignature: "removeAuditor"
+  ): TypedContractMethod<[auditor: AddressLike], [void], "nonpayable">;
   getFunction(
     nameOrSignature: "renounceRole"
   ): TypedContractMethod<
@@ -570,17 +523,7 @@ export interface AuditRegistry extends BaseContract {
   getFunction(
     nameOrSignature: "supportsInterface"
   ): TypedContractMethod<[interfaceId: BytesLike], [boolean], "view">;
-  getFunction(
-    nameOrSignature: "transferOwnership"
-  ): TypedContractMethod<[newOwner: AddressLike], [void], "nonpayable">;
 
-  getEvent(
-    key: "OwnershipTransferred"
-  ): TypedContractEvent<
-    OwnershipTransferredEvent.InputTuple,
-    OwnershipTransferredEvent.OutputTuple,
-    OwnershipTransferredEvent.OutputObject
-  >;
   getEvent(
     key: "RoleAdminChanged"
   ): TypedContractEvent<
@@ -604,17 +547,6 @@ export interface AuditRegistry extends BaseContract {
   >;
 
   filters: {
-    "OwnershipTransferred(address,address)": TypedContractEvent<
-      OwnershipTransferredEvent.InputTuple,
-      OwnershipTransferredEvent.OutputTuple,
-      OwnershipTransferredEvent.OutputObject
-    >;
-    OwnershipTransferred: TypedContractEvent<
-      OwnershipTransferredEvent.InputTuple,
-      OwnershipTransferredEvent.OutputTuple,
-      OwnershipTransferredEvent.OutputObject
-    >;
-
     "RoleAdminChanged(bytes32,bytes32,bytes32)": TypedContractEvent<
       RoleAdminChangedEvent.InputTuple,
       RoleAdminChangedEvent.OutputTuple,
