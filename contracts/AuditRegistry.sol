@@ -56,6 +56,7 @@ contract AuditRegistry is AccessControl {
         uint256 mediumSeverity,
         uint256 lowSeverity
     ) public onlyRole(AUDITOR_ROLE) {
+        require(endDate > startDate, "The end date must be after the start date");
         audits[nextId] = Audit({
             id: nextId,
             auditor: msg.sender,
@@ -80,6 +81,9 @@ contract AuditRegistry is AccessControl {
         uint256 mediumSeverity, 
         uint256 lowSeverity
     ) public onlyRole(AUDITOR_ROLE) {
+        require(audits[id].auditor == msg.sender, "Only the auditor can certify the audit");
+        require(!audits[id].certified, "The audit is already certified");
+        require(endDate > audits[id].startDate, "The end date must be after the start date");
         Audit storage audit = audits[id];
         audit.endDate = endDate;
         audit.highSeverity = highSeverity;
@@ -101,6 +105,8 @@ contract AuditRegistry is AccessControl {
     uint256, 
     bool
 ) {
+    require(id < nextId, "The audit does not exist");
+    require(audits[id].auditor == msg.sender || hasRole(DEFAULT_ADMIN_ROLE, msg.sender), "Unauthorized");
     Audit storage audit = audits[id];
     return (
         audit.id, 
