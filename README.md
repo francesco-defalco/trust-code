@@ -1,34 +1,34 @@
 # Trust-Code
 
-Trust-Code è uno smart contract Ethereum scritto in Solidity. Il suo scopo principale è di registrare e certificare gli audit di sicurezza del codice.
+Trust-Code is an Ethereum smart contract written in Solidity. Its main purpose is to record and certify code security audits.
 
-## Funzionalità
+## Features
 
--   **Registrazione degli audit**: Gli auditor possono registrare i risultati degli audit, inclusi il numero di vulnerabilità trovate e la gravità di ciascuna vulnerabilità.
--   **Certificazione degli audit**: Gli auditor possono certificare i risultati degli audit. Una volta certificato, un audit non può essere modificato.
--   **Gestione degli auditor**: Solo l'owner del contratto può aggiungere nuovi auditor. Solo gli auditor approvati possono registrare e certificare gli audit.
+-   **Audit Registration**: Auditors can record audit results, including the number of vulnerabilities found and the severity of each vulnerability.
+-   **Audit Certification**: Auditors can certify audit results. Once certified, an audit cannot be modified.
+-   **Auditor Management**: Only the contract owner can add new auditors. Only approved auditors can record and certify audits.
 
-## Struttura dei dati
+## Data Structure
 
-L'audit è rappresentato come una struttura con i seguenti campi:
+The audit is represented as a structure with the following fields:
 
--   `id`: Un identificatore univoco per l'audit.
--   `auditor`: L'indirizzo Ethereum dell'auditor che ha eseguito l'audit.
--   `company`: La società che ha eseguito l'audit.
--   `project`: Il progetto che è stato auditato.
--   `startDate`: La data di inizio dell'audit.
--   `endDate`: La data di fine dell'audit.
--   `vulnerabilitiesFound`: Il numero di vulnerabilità trovate durante l'audit.
--   `githubCommit`: Il commit di GitHub su cui è stato effettuato l'audit.
--   `highSeverity`: Il numero di vulnerabilità di alta gravità trovate.
--   `mediumSeverity`: Il numero di vulnerabilità di media gravità trovate.
--   `lowSeverity`: Il numero di vulnerabilità di bassa gravità trovate.
--   `certified`: Un flag che indica se l'audit è stato certificato.
+-   `id`: A unique identifier for the audit.
+-   `auditor`: The Ethereum address of the auditor who performed the audit.
+-   `company`: The company that performed the audit.
+-   `project`: The project that was audited.
+-   `startDate`: The start date of the audit.
+-   `endDate`: The end date of the audit.
+-   `vulnerabilitiesFound`: The number of vulnerabilities found during the audit.
+-   `githubCommit`: The GitHub commit that the audit was performed on.
+-   `highSeverity`: The number of high severity vulnerabilities found.
+-   `mediumSeverity`: The number of medium severity vulnerabilities found.
+-   `lowSeverity`: The number of low severity vulnerabilities found.
+-   `certified`: A flag indicating whether the audit has been certified.
 
-## Installazione e utilizzo
+## Installation and Use
 
-Per utilizzare questo smart contract, è necessario avere un ambiente Ethereum configurato, come Truffle o Hardhat. Dopo aver clonato il repository, è possibile implementare il contratto sulla rete Ethereum di tua scelta utilizzando il comando di migrazione appropriato per il tuo ambiente.
+To use this smart contract, you need to have an Ethereum environment set up, such as Truffle or Hardhat. After cloning the repository, you can deploy the contract to the Ethereum network of your choice using the appropriate migration command for your environment.
 
-## Licenza
+## License
 
-Questo progetto è rilasciato sotto la licenza MIT.
+This project is released under the Apache-2.0 license.

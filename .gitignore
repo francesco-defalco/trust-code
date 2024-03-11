@@ -24,3 +24,4 @@ typechain-types/@openzeppelin/contracts/utils/introspection/ERC165.ts
 typechain-types/@openzeppelin/contracts/access/Ownable.ts
 typechain-types/@openzeppelin/contracts/access/IAccessControl.ts
 typechain-types/@openzeppelin/contracts/access/AccessControl.ts
+typechain-types/*
