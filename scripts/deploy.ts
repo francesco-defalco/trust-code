@@ -1,4 +1,3 @@
-import { AuditRegistry } from "./../typechain-types/contracts/AuditRegistry";
 import { ethers } from "hardhat";
 
 async function main() {
@@ -6,7 +5,7 @@ async function main() {
 
 	await auditRegistry.waitForDeployment();
 
-	console.log("AuditRegistry deployed to:", auditRegistry.getAddress());
+	console.log("AuditRegistry deployed to:", await auditRegistry.getAddress());
 }
 
 // We recommend this pattern to be able to use async/await everywhere

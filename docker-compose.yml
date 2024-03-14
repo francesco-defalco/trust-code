@@ -1,0 +1,20 @@
+version: "3"
+services:
+    hardhat:
+        container_name: hardhat
+        build:
+            context: .
+            dockerfile: Dockerfile
+        volumes:
+            - .:/app
+        command: ["npx", "hardhat", "node"]
+    deploy:
+        container_name: deploy
+        build:
+            context: .
+            dockerfile: Dockerfile
+        volumes:
+            - .:/app
+        command: /bin/bash -c "sleep 20 && npx hardhat run scripts/deploy.ts"
+        depends_on:
+            - hardhat
